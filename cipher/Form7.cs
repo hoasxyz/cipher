@@ -56,12 +56,34 @@ namespace Cipher
             this.Close();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        //private void button4_Click(object sender, EventArgs e)
+        //{
+        //    ExcelWorksheet workSheet;
+        //    using (var p = new ExcelPackage())
+        //    {
+        //        workSheet = p.Workbook.Worksheets.Add("考试错题");
+
+        //        workSheet.Cells[1, 1].Value = "题号";
+        //        workSheet.Cells[1, 2].Value = "题目";
+        //        workSheet.Cells[1, 3].Value = "正确答案";
+        //        workSheet.Cells[1, 4].Value = "你的答案";
+
+        //        for (int j = 0; j < Datapass.wrong; j++)
+        //        {
+        //            workSheet.Cells[j + 2, 1].Value = Datapass.Mistake_Number[j];
+        //            workSheet.Cells[j + 2, 2].Value = Datapass.Mistake_Equation[j];
+        //            workSheet.Cells[j + 2, 3].Value = Datapass.Mistake_Rightanswer[j];
+        //            workSheet.Cells[j + 2, 4].Value = Datapass.Mistake_Youranswer[j];
+        //        }
+        //        //p.SaveAs(new FileInfo("考试错题.xlsx"));
+        //    }
+        //}
+        private void button4_Click(object sender,EventArgs e)
         {
             ExcelWorksheet workSheet;
             using (var p = new ExcelPackage())
             {
-                workSheet = p.Workbook.Worksheets.Add("练习错题");
+                workSheet = p.Workbook.Worksheets.Add("考试错题");
 
                 workSheet.Cells[1, 1].Value = "题号";
                 workSheet.Cells[1, 2].Value = "题目";
@@ -75,10 +97,21 @@ namespace Cipher
                     workSheet.Cells[j + 2, 3].Value = Datapass.Mistake_Rightanswer[j];
                     workSheet.Cells[j + 2, 4].Value = Datapass.Mistake_Youranswer[j];
                 }
+                // Displays a SaveFileDialog so the user can save the Image  
+                // assigned to Button2.  
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Excel 工作簿|*.xlsx";
+                saveFileDialog1.Title = "另存为";
+                saveFileDialog1.ShowDialog();
 
-
-                p.SaveAs(new FileInfo("考试错题.xlsx"));
+                // If the file name is not an empty string open it for saving.  
+                if (saveFileDialog1.FileName != "")
+                {
+                    string localFilePath = saveFileDialog1.FileName.ToString();
+                    p.SaveAs(new FileInfo(localFilePath));
+                }
             }
+
         }
     }
 }

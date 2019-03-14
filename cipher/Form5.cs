@@ -57,9 +57,9 @@ namespace Cipher
         private void button4_Click(object sender, EventArgs e)
         {
             ExcelWorksheet workSheet;
-            using (var p = new ExcelPackage())
+            using (var q = new ExcelPackage())
             {
-                workSheet = p.Workbook.Worksheets.Add("练习错题");
+                workSheet = q.Workbook.Worksheets.Add("练习错题");
 
                 workSheet.Cells[1, 1].Value = "题号";
                 workSheet.Cells[1, 2].Value = "题目";
@@ -73,10 +73,21 @@ namespace Cipher
                     workSheet.Cells[j + 2, 3].Value = Datapass.Mistake_Rightanswer[j];
                     workSheet.Cells[j + 2, 4].Value = Datapass.Mistake_Youranswer[j];
                 }
+                // Displays a SaveFileDialog so the user can save the Image  
+                // assigned to Button2.  
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Excel 工作簿|*.xlsx";
+                saveFileDialog1.Title = "另存为";
+                saveFileDialog1.ShowDialog();
 
-
-                p.SaveAs(new FileInfo("练习错题.xlsx"));
+                // If the file name is not an empty string open it for saving.  
+                if (saveFileDialog1.FileName != "")
+                {
+                    string localFilePath = saveFileDialog1.FileName.ToString();
+                    q.SaveAs(new FileInfo(localFilePath));
+                }
             }
+
         }
     }
 }
