@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cipher"
         mc:Ignorable="d"
-        Title="设置" Height="450" Width="800" ResizeMode="NoResize">
+        Title="设置" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
-        <RadioButton x:Name="RadioButton1" HorizontalAlignment="Left" Margin="202,75,0,0" VerticalAlignment="Top" Content="练习" Checked="RadioButton1_Checked" Unchecked="RadioButton1_Unchecked" IsChecked="True" Click="RadioButton1_Click"/>
+        <RadioButton x:Name="RadioButton1" HorizontalAlignment="Left" Margin="202,75,0,0" VerticalAlignment="Top" Content="练习" Checked="RadioButton1_Checked" Unchecked="RadioButton1_Unchecked" Click="RadioButton1_Click"/>
         <RadioButton x:Name="RadioButton2" Content="考试" HorizontalAlignment="Left" Margin="543,75,0,0" VerticalAlignment="Top" Checked="RadioButton2_Checked" Click="RadioButton2_Click"/>
-        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="23" Margin="162,121,0,0" TextWrapping="Wrap" Text="6" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="23" Margin="162,169,0,0" TextWrapping="Wrap" Text="6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TextBox3" HorizontalAlignment="Left" Height="23" Margin="162,216,0,0" TextWrapping="Wrap" Text="6" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="CheckBox3" Content="乘法运算" HorizontalAlignment="Left" Margin="128,298,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <TextBox x:Name="TextBox1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="162,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="TextBox2" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="162,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextBox3" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="162,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="CheckBox3" Content="乘法运算" HorizontalAlignment="Left" Margin="128,298,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CheckBox4" Content="除法运算" HorizontalAlignment="Left" Margin="234,298,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="CheckBox1" Content="加法运算" HorizontalAlignment="Left" Margin="128,275,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <CheckBox x:Name="CheckBox1" Content="加法运算" HorizontalAlignment="Left" Margin="128,275,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CheckBox2" Content="减法运算" HorizontalAlignment="Left" Margin="234,275,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="497,212,0,0" VerticalAlignment="Top" Width="154" SelectedIndex="0" IsEnabled="False">
             <ComboBoxItem Content="简单（十以内单次运算）"/>
@@ -23,7 +23,7 @@
             <ComboBoxItem Content="困难（二位数多次运算）"/>
         </ComboBox>
         <Button x:Name="Button1" Content="确定" HorizontalAlignment="Left" Margin="354,331,0,0" VerticalAlignment="Top" Width="75" Click="Button1_Click"/>
-        <CheckBox x:Name="CheckBox5" Content="求余运算" HorizontalAlignment="Left" Margin="128,321,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <CheckBox x:Name="CheckBox5" Content="求余运算" HorizontalAlignment="Left" Margin="128,321,0,0" VerticalAlignment="Top"/>
         <Label Content="题目数目" HorizontalAlignment="Left" Margin="98,121,0,0" VerticalAlignment="Top"/>
         <Label Content="数值上界" HorizontalAlignment="Left" Margin="98,167,0,0" VerticalAlignment="Top"/>
         <Label Content="操作数" HorizontalAlignment="Left" Margin="98,214,0,0" VerticalAlignment="Top"/>

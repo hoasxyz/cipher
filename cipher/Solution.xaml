@@ -6,29 +6,55 @@
         xmlns:local="clr-namespace:cipher"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="cipher.Solution"
         mc:Ignorable="d"
-        Title="错题整理" Height="572.431" Width="837.771">
-    <Grid Margin="0,0,3.333,-2.667">
+        Title="错题整理" Height="572.431" Width="837.771"
+    
+    >
+
+    <Window.Resources>
+
+        <Style x:Key="StyleContextMenuTest" TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RightorWrong}" Value="错误">
+                    <Setter Property="Foreground" Value="Red" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="0,0,-6.667,-2.667">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
 
 
-        <ListView x:Name="ListView1" Margin="50,160,56,90" Loaded="ListView1_Loaded">
+        <ListView x:Name="ListView1" Margin="50,160,52,90" Loaded="ListView1_Loaded" 
+                  >
             <ListView.View>
+                
                 <GridView>
-                    <GridViewColumn Header="题号" Width="100" DisplayMemberBinding="{Binding Num}"/>
-                    <GridViewColumn Header="题目" Width="200" DisplayMemberBinding="{Binding Question}"/>
-                    <GridViewColumn Header="正确答案" Width="200" DisplayMemberBinding="{Binding Rightans}"/>
-                    <GridViewColumn Header="你的答案" Width="200" DisplayMemberBinding="{Binding Yourans}"/>
+                    
+                    <GridViewColumn Header="题号" Width="100"  DisplayMemberBinding="{Binding Num}"/>
+                    <GridViewColumn Header="题目" Width="150" DisplayMemberBinding="{Binding Question}"/>
+                    <GridViewColumn Header="正确答案" Width="170" DisplayMemberBinding="{Binding Rightans}"/>
+                    <GridViewColumn Header="你的答案" Width="170" DisplayMemberBinding="{Binding Yourans}"/>
+                    <GridViewColumn Header="正误" Width="100" DisplayMemberBinding="{Binding RightorWrong}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="Label1" Content="Label" HorizontalAlignment="Left" Margin="107,74,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label x:Name="Label2" Content="Label" HorizontalAlignment="Left" Margin="107,112,0,0" VerticalAlignment="Top"/>
-        <Button Style="{StaticResource MaterialDesignFlatButton}" Content="输出答案" Margin="0,77,74,0" VerticalAlignment="Top" Click="Button_Click" FontSize="16" HorizontalAlignment="Right" Width="156"/>
+        <Label x:Name="Label1" Content="Label" HorizontalAlignment="Left" Margin="107,74,0,0" VerticalAlignment="Top" FontSize="18" Height="33" Width="186"/>
+        <Label x:Name="Label2" Content="Label" HorizontalAlignment="Left" Margin="107,112,0,0" VerticalAlignment="Top" Height="25" Width="302"/>
+        <Button Style="{StaticResource MaterialDesignFlatButton}" Content="输出答案" Margin="0,77,70,0" VerticalAlignment="Top" Click="Button_Click" FontSize="16" HorizontalAlignment="Right" Width="156"/>
 
         <materialDesign:ColorZone
             Mode="PrimaryDark"
             Padding="16"
             CornerRadius="3"
-            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="48">
+            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="48" Margin="-7,0,0,0">
             <StackPanel
                 Orientation="Horizontal">
                 <TextBlock

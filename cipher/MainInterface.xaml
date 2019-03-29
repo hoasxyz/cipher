@@ -6,23 +6,27 @@
         xmlns:local="clr-namespace:cipher"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="cipher.MainInterface"
         mc:Ignorable="d"
-        Title="主界面" Height="581.562" Width="800" Loaded="Window_Loaded" Initialized="Window_Initialized" Activated="Window_Activated">
+        Title="主界面" Height="581.562" Width="800" Loaded="Window_Loaded" Initialized="Window_Initialized" Activated="Window_Activated" Deactivated="Window_Deactivated">
     <Grid Margin="0,0,0.333,-0.333">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="22*"/>
-            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="267*"/>
             <ColumnDefinition Width="95*"/>
             <ColumnDefinition Width="121*"/>
-            <ColumnDefinition Width="254*"/>
-            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="253*"/>
+            <ColumnDefinition Width="31*"/>
         </Grid.ColumnDefinitions>
-        <materialDesign:Card Margin="6,79,0.666,192.333" VerticalAlignment="Stretch" Grid.ColumnSpan="4" Grid.Column="1"/>
+        <materialDesign:Card Margin="0.667,79,0.667,192" VerticalAlignment="Stretch" Grid.ColumnSpan="4" Grid.Column="2"/>
         <materialDesign:ColorZone
             Mode="PrimaryDark"
             Padding="16"
             CornerRadius="3"
             materialDesign:ShadowAssist.ShadowDepth="Depth3"
-            Margin="0,0,0.333,0" Grid.ColumnSpan="6" Height="48">
+            Margin="-5,0,-5.667,0" Grid.ColumnSpan="7" Height="48">
             <StackPanel
                 Orientation="Horizontal">
                 <TextBlock
@@ -30,21 +34,22 @@
                   Margin="16 0 0 0" Text="小学生数学练习软件"/>
             </StackPanel>
         </materialDesign:ColorZone>
-        <Button x:Name="Set" Margin="0,109,39.666,0" Content="设置" Click="Set_Click" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Grid.Column="4"/>
-        <Button x:Name="Button3" Content="提交" Margin="0,0,14.666,117.333" Click="Button3_Click" Height="32" Grid.Column="3" HorizontalAlignment="Right" Width="77" VerticalAlignment="Bottom"/>
-        <Button x:Name="Button2" Content="下一题" Margin="17.667,0,0,65.333" Click="Button_Click_1" Height="32" VerticalAlignment="Bottom" Grid.Column="2" HorizontalAlignment="Left" Width="75"/>
-        <Button x:Name="Button4" Content="成绩单" Margin="0,204,39.666,0" VerticalAlignment="Top" Click="Button4_Click" HorizontalAlignment="Right" Width="75" Grid.Column="4"/>
-        <Button x:Name="Button1" Content="上一题" Margin="17.667,0,0,117.333" Click="Button1_Click" Height="32" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" IsEnabled="False"/>
-        <Label x:Name="Label3" HorizontalAlignment="Left" Margin="130,120,0,0" VerticalAlignment="Top" Height="40" Width="168" Grid.ColumnSpan="2" Grid.Column="1" FontSize="20"/>
-        <Label x:Name="Label1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,165,13.333,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="48" Content="1+1" Grid.Column="1" FontSize="18" HorizontalAlignment="Right" Width="168"/>
-        <Label Content="=" Margin="81.667,159,91.666,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Height="54" FontSize="18" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="48" Margin="33.834,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Grid.Column="3" Grid.ColumnSpan="2" FontSize="18"/>
-        <Label x:Name="Label2" HorizontalAlignment="Left" Margin="228,244,0,0" VerticalAlignment="Top" Height="33" Width="287" Grid.ColumnSpan="4" Grid.Column="1"/>
-        <StatusBar Margin="0,0,0.333,0.333" Height="41" VerticalAlignment="Bottom" Grid.ColumnSpan="6">
+        <Button x:Name="Set" Margin="0,109,39.667,0" Content="设置" Click="Set_Click" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Grid.Column="5"/>
+        <Button x:Name="Button3" Content="提交" Margin="0,0,15,117" Click="Button3_Click" Height="32" Grid.Column="4" HorizontalAlignment="Right" Width="77" VerticalAlignment="Bottom"/>
+        <Button x:Name="Button2" Content="下一题" Margin="17,0,0,65" Click="Button_Click_1" Height="32" VerticalAlignment="Bottom" Grid.Column="3" HorizontalAlignment="Left" Width="75"/>
+        <Button x:Name="Button4" Content="成绩单" Margin="0,204,39.667,0" VerticalAlignment="Top" Click="Button4_Click" HorizontalAlignment="Right" Width="75" Grid.Column="5"/>
+        <Button x:Name="Button1" Content="上一题" Margin="17,0,0,117" Click="Button1_Click" Height="32" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" IsEnabled="False"/>
+        <Label x:Name="Label3" HorizontalAlignment="Left" Margin="121.667,120,0,0" VerticalAlignment="Top" Height="40" Width="168" Grid.ColumnSpan="2" Grid.Column="2" FontSize="20"/>
+        <Label x:Name="Label1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,165,12.667,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="48" Content="1+1" Grid.Column="2" FontSize="18" HorizontalAlignment="Right" Width="168" Visibility="Hidden"/>
+        <Label x:Name="Label4" Content="=" Margin="81,159,92,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3" Height="54" FontSize="18" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="48" Margin="34.333,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Grid.Column="4" Grid.ColumnSpan="2" FontSize="18" Visibility="Hidden"/>
+        <Label x:Name="Label2" HorizontalAlignment="Left" Margin="219.667,244,0,0" VerticalAlignment="Top" Height="33" Width="287" Grid.ColumnSpan="4" Grid.Column="2"/>
+        <StatusBar Margin="0,0,0.333,0" Height="41" VerticalAlignment="Bottom" Grid.ColumnSpan="7">
             <Label x:Name="StatusLabel1" Content="Label" Width="150"/>
             <Label x:Name="StatusLabel2" Content="Label" Width="161"/>
         </StatusBar>
-        <Button x:Name="Start" Content="开始" Margin="0,159,39.666,0" Click="Button_Click" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top" Grid.Column="4"/>
+        <Button x:Name="Start" Content="开始" Margin="0,159,39.667,0" Click="Button_Click" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Top" Grid.Column="5"/>
+        <ProgressBar x:Name="ProgressBar1"  Height="7" Margin="0,48,0.333,0" VerticalAlignment="Top" Grid.ColumnSpan="7" Background="White" Foreground="#FFB39DDB" BorderBrush="White"/>
 
     </Grid>
 </Window>

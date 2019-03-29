@@ -48,15 +48,32 @@ namespace cipher
 			}
 			
 			Label2.Content = "你做对了" + Datapass.right + "道，做错了" + Datapass.wrong + "道";
-			for (int j = 0; j < Datapass.wrong; j++)
+			for (int j = 1; j <= Datapass.N; j++)
 			{
-				testInfoList.Add(
-					new testInfo(
-					Convert.ToString(Datapass.Mistake_Number[j]),
-					Convert.ToString(Datapass.Mistake_Equation[j]),
-					Convert.ToString(Datapass.Mistake_Rightanswer[j]),
-					Convert.ToString(Datapass.Mistake_Youranswer[j]))
-					);
+				if (Datapass.practice == 0)
+				{
+					testInfoList.Add(
+					  new testInfo(
+					  Convert.ToString(j),
+					  Convert.ToString(MainInterface.Equation[j - 1]),
+					  Convert.ToString(MainInterface.Answer[j - 1]),
+					  Convert.ToString(MainInterface.input[j - 1]),
+					  MainInterface.right[j-1]
+					  )	  
+					  );
+				}
+				else
+				{
+					testInfoList.Add(
+					  new testInfo(
+					  Convert.ToString(j),
+					  Convert.ToString(MainInterface.Equation[j - 1]),
+					  Convert.ToString(MainInterface.Answer[j - 1]),
+					  Convert.ToString(MainInterface.input1[j - 1]),
+					  MainInterface.right[j-1]
+					  )
+					  );
+				}
 			}
 			ListView1.ItemsSource = testInfoList;
 		}
@@ -104,6 +121,7 @@ namespace cipher
 		private string _question;
 		private string _rightans;
 		private string _yourans;
+		private string _rightorwrong;
 		public string Num//get和set分别为只读和只写，这是绑定的正常写法，Email为我们要进行绑定的一个属性
 		{
 			get { return _num; }
@@ -124,12 +142,18 @@ namespace cipher
 			get { return _yourans; }
 			set { _yourans = value; }
 		}
-		public testInfo(string num, string question, string rightans, string yourans)//构造函数
+		public string RightorWrong
+		{
+			get { return _rightorwrong; }
+			set { _rightorwrong = value; }
+		}
+		public testInfo(string num, string question, string rightans, string yourans,string right)//构造函数
 		{
 			_num = num;
 			_question = question;
 			_rightans = rightans;
 			_yourans = yourans;
+			_rightorwrong = right;
 		}
 	}
 }

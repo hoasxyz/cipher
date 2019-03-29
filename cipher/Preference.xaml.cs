@@ -63,16 +63,51 @@ namespace cipher
 						Datapass.n = Convert.ToInt32(TextBox2.Text);//在不同窗口传递数据
 						Datapass.M = Convert.ToInt32(TextBox3.Text) - 1;//操作数
 						if (CheckBox1.IsChecked == true)//判断用户勾选的运算符
+						{
 							Datapass.sign.Add('+');
+							Datapass.x1 = 1;
+						}
+						else
+						{
+							Datapass.x1 = 0;
+						}
 						if (CheckBox2.IsChecked == true)
+						{
 							Datapass.sign.Add('-');
+							Datapass.x2 = 1;
+						}
+						else
+						{
+							Datapass.x2 = 0;
+						}
 						if (CheckBox3.IsChecked == true)
+						{
 							Datapass.sign.Add('*');
+							Datapass.x3 = 1;
+						}
+						else
+						{
+							Datapass.x3 = 0;
+						}
 						if (CheckBox4.IsChecked == true)
+						{
 							Datapass.sign.Add('/');
+							Datapass.x4 = 1;
+						}
+						else
+						{
+							Datapass.x4 = 0;
+						}
 						if (CheckBox5.IsChecked == true)
+						{
 							Datapass.sign.Add('%');
-						
+							Datapass.x5 = 1;
+						}
+						else
+						{
+							Datapass.x5 = 0;
+						}
+
 						this.Close();
 					}
 				}
@@ -86,6 +121,7 @@ namespace cipher
 			{
 				Datapass.practice = 0;
 				Datapass.N = 50;
+				Datapass.y1 = comboBox1.SelectedIndex;
 				switch (comboBox1.SelectedIndex)
 				{
 					case 0:
@@ -155,6 +191,45 @@ namespace cipher
 			CheckBox3.IsEnabled = false;
 			CheckBox4.IsEnabled = false;
 			CheckBox5.IsEnabled = false;
+		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			comboBox1.SelectedIndex = Datapass.y1;
+			TextBox1.Text = Datapass.N.ToString();
+			TextBox2.Text = Datapass.n.ToString();
+			TextBox3.Text = (Datapass.M+1).ToString();
+			CheckBox1.IsChecked = (Datapass.x1 == 1);
+			CheckBox2.IsChecked = (Datapass.x2 == 1);
+			CheckBox3.IsChecked = (Datapass.x3 == 1);
+			CheckBox4.IsChecked = (Datapass.x4 == 1);
+			CheckBox5.IsChecked = (Datapass.x5 == 1);
+			if (Datapass.practice==1)
+			{
+				RadioButton1.IsChecked = true;
+				comboBox1.IsEnabled = false;
+				TextBox1.IsEnabled = true;
+				TextBox2.IsEnabled = true;
+				TextBox3.IsEnabled = true;
+				CheckBox1.IsEnabled = true;
+				CheckBox2.IsEnabled = true;
+				CheckBox3.IsEnabled = true;
+				CheckBox4.IsEnabled = true;
+				CheckBox5.IsEnabled = true;
+			}
+			else
+			{
+				RadioButton2.IsChecked = true;
+				comboBox1.IsEnabled = true;
+				TextBox1.IsEnabled = false;
+				TextBox2.IsEnabled = false;
+				TextBox3.IsEnabled = false;
+				CheckBox1.IsEnabled = false;
+				CheckBox2.IsEnabled = false;
+				CheckBox3.IsEnabled = false;
+				CheckBox4.IsEnabled = false;
+				CheckBox5.IsEnabled = false;
+			}
 		}
 	}
 }

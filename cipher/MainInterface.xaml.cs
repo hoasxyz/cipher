@@ -32,10 +32,11 @@ namespace cipher
 		static int i = 1;//用来回顾题目时的索引
 		static int j = 1;//反映做题进度
 		static string temp;
-		static string[] Equation = new string[50];
-		static ArrayList input1 = new ArrayList(55);
-		static string[] input = new string[55];
-		static int[] Answer = new int[50];
+		public static string[] Equation = new string[50];
+		public static ArrayList input1 = new ArrayList(55);
+		public static string[] input = new string[55];
+		public static int[] Answer = new int[50];
+		public static string[] right = new string[50];
 
 		private DispatcherTimer timer=new DispatcherTimer();//设置定时器
 		Stopwatch sw = new Stopwatch(); //秒表对象
@@ -59,6 +60,7 @@ namespace cipher
 			input1 = new ArrayList(55);
 			input = new string[55];
 			Answer = new int[50];
+			right = new string[50];
 
 			i = 1;j = 1;
 			Random rd = new Random();
@@ -96,6 +98,19 @@ namespace cipher
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			Button4.Visibility = Visibility.Hidden;
+			Button1.Visibility = Visibility.Hidden;
+			Button2.Visibility = Visibility.Hidden;
+			Button3.Visibility = Visibility.Hidden;
+
+			Label1.Visibility = Visibility.Hidden;
+			Label2.Visibility = Visibility.Hidden;
+			Label3.Visibility = Visibility.Hidden;
+			Label4.Visibility = Visibility.Hidden;
+			textBox1.Visibility = Visibility.Hidden;
+
+			Preference preference = new Preference();
+			preference.Show();
 			this.Owner.Hide();
 		}
 
@@ -104,32 +119,57 @@ namespace cipher
 			StatusLabel1.Content=MainWindow.name+ " 小朋友你好呀！";
 			StatusLabel2.Content = " | 登录时间：" + DateTime.Now.ToLongTimeString();
             MessageBox.Show("首次使用，请先点设置，再点开始。", "温馨提示", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			
         }
 
-		private void Set_Click(object sender, RoutedEventArgs e)
+		private void Set_Click(object sender, RoutedEventArgs e)//设置
 		{
 			//要检查用户的题目有没有做完
+			if (MessageBox.Show("做题记录会丢失，确定要切换界面吗？", "小心呀！", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				Button4.Visibility = Visibility.Hidden;
+				Button1.Visibility = Visibility.Hidden;
+				Button2.Visibility = Visibility.Hidden;
+				Button3.Visibility = Visibility.Hidden;
 
+				Label1.Visibility = Visibility.Hidden;
+				Label2.Visibility = Visibility.Hidden;
+				Label3.Visibility = Visibility.Hidden;
+				Label4.Visibility = Visibility.Hidden;
+				textBox1.Visibility = Visibility.Hidden;
 
-			Preference preference = new Preference();
-			preference.Show();
+				Preference preference = new Preference();
+				preference.Show();
+			}
+			
 		}
 
 		private void Window_Activated(object sender, EventArgs e)
 		{
-			if(Datapass.practice!=1)
-				Label2.Visibility = Visibility.Hidden;
+			
+
+			
+
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			Update();
+			ProgressBar1.Maximum = Datapass.N;
 			Label1.Content = Equation[j - 1];
 			textBox1.Text = "9999";
 			if (Datapass.practice == 1)
 			{
+				ProgressBar1.Value = 0;
+				Label3.Visibility = Visibility.Visible;
+				Label1.Visibility = Visibility.Visible;
+				Label4.Visibility = Visibility.Visible;
+				textBox1.Visibility = Visibility.Visible;
 				Label3.Content = "练习：第" + j + "题";
 				Label2.Visibility = Visibility.Hidden;
+				Button1.Visibility = Visibility.Visible;
+				Button2.Visibility = Visibility.Visible;
+				Button3.Visibility = Visibility.Visible;
 				Button1.IsEnabled = false;
 				Button2.IsEnabled = false;
 				Button3.IsEnabled = true;
@@ -138,6 +178,17 @@ namespace cipher
 			}
 			else
 			{
+				ProgressBar1.Value = 1;
+				Button1.Visibility = Visibility.Visible;
+				Button2.Visibility = Visibility.Visible;
+				Button3.Visibility = Visibility.Visible;
+				Label3.Visibility = Visibility.Visible;
+				Label1.Visibility = Visibility.Visible;
+				Label4.Visibility = Visibility.Visible;
+				textBox1.Visibility = Visibility.Visible;
+				Button1.IsEnabled = false;
+				Button2.IsEnabled = true;
+				Button3.IsEnabled = true;
 				Button4.Visibility = Visibility.Hidden;
 				Label3.Content = "考试：第" + j + "题";
 				Label2.Visibility = Visibility.Visible;
@@ -151,14 +202,17 @@ namespace cipher
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)//下一题
-		{	
-			if(Datapass.practice!=1)//考试
+		{
+			
+			if (Datapass.practice!=1)//考试
 			{
+				
 				input[j - 1] = textBox1.Text;
 				j++;
+				ProgressBar1.Value = j;
 				Label3.Content= "考试：第" + j + "题";
 				Label1.Content = Equation[j - 1];
-				textBox1.Text = input[j-1];
+				textBox1.Text = "99";
 				if (j == Datapass.N)
 					Button2.IsEnabled = false;
 				if (j > 1)
@@ -176,6 +230,7 @@ namespace cipher
 				{
 					i++;
 					Button2.IsEnabled = false;
+					
 					Label1.Content = Equation[j - 1];
 				}
 				else//旧题
@@ -193,11 +248,13 @@ namespace cipher
 						{
 							Label2.Content = "恭喜你答对啦！";
 							Label2.Visibility = Visibility.Visible;
+							right[j - 1] = "正确";
 						}
 						else
 						{
 							Label2.Content = "答错啦！正确答案是" + (Convert.ToInt32(Answer[i - 1]));
 							Label2.Visibility = Visibility.Visible;
+							right[j - 1] = "错误";
 						}
 					}
 				}
@@ -222,6 +279,7 @@ namespace cipher
 				}
 				else
 				{
+					ProgressBar1.Value += 1;
 					try
 					{
 						input1.Add(Convert.ToInt32(textBox1.Text));
@@ -229,6 +287,7 @@ namespace cipher
 						{
 							Label2.Content = "恭喜你答对啦！";
 							Label2.Visibility = Visibility.Visible;
+							right[j - 1] = "正确";
 						}
 						else
 						{
@@ -239,6 +298,7 @@ namespace cipher
 							Datapass.Mistake_Youranswer.Add(input1[j - 1]);
 							Datapass.Mistake_Rightanswer.Add(Answer[j - 1]);
 							Datapass.wrong++;
+							right[j - 1] = "错误";
 						}
 						Button3.IsEnabled = false;
 						if (j != Datapass.N)
@@ -262,15 +322,19 @@ namespace cipher
 			}
 			else
 			{
-				sw.Stop();
-				timer.Stop();
+				
 				if (MessageBox.Show("考题或许未全部完成，确定要提交吗？", "三思呀！", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
 				{
+					sw.Stop();
+					timer.Stop();
+					Button3.IsEnabled = false;
+					input[j - 1] = textBox1.Text;
 					for (int k = 1; k <= 50; k++)
 					{
 						int tryy;
 						if (input[k - 1].ToString() == "")
 						{
+							right[k - 1] = "错误";
 							Datapass.Mistake_Number.Add(k);
 							Datapass.Mistake_Equation.Add(Equation[k - 1]);
 							Datapass.Mistake_Youranswer.Add(input[k - 1]);
@@ -284,6 +348,7 @@ namespace cipher
 						}
 						catch
 						{
+							right[k - 1] = "错误";
 							Datapass.Mistake_Number.Add(k);
 							Datapass.Mistake_Equation.Add(Equation[k - 1]);
 							Datapass.Mistake_Youranswer.Add(input[k - 1]);
@@ -293,10 +358,12 @@ namespace cipher
 						}
 						if ((Convert.ToInt32(input[k - 1]) == Answer[k - 1]))
 						{
+							right[k - 1] = "正确";
 							Datapass.Grade += 2;
 						}
 						else
 						{
+							right[k - 1] = "错误";
 							Datapass.Mistake_Number.Add(k);
 							Datapass.Mistake_Equation.Add(Equation[k - 1]);
 							Datapass.Mistake_Youranswer.Add(input[k - 1]);
@@ -325,6 +392,7 @@ namespace cipher
 			{
 				input[j-1]=textBox1.Text;
 				j--;
+				ProgressBar1.Value = j;
 				Label3.Content= "考试：第" + j + "题";
 				Label1.Content= Equation[j - 1];
 				textBox1.Text = input[j - 1].ToString();
@@ -361,6 +429,11 @@ namespace cipher
 				if (j == 1)
 					Button1.IsEnabled = false;
 			}
+		}
+
+		private void Window_Deactivated(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }

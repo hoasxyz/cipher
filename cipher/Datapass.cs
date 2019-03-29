@@ -9,10 +9,17 @@ namespace cipher
 {
     class Datapass
     {
-		public static int practice = 0;
-		public static int N=6;
+		public static int x1 = 1;
+		public static int x2 = 1;
+		public static int x3 = 1;
+		public static int x4 = 1;
+		public static int x5 = 1;
+		public static int y1 = 0;
+
+		public static int practice = 1;
+		public static int N=3;
 		public static int n=6;
-		public static int M=6;
+		public static int M=5;
 		public static int Grade;
 		public static ArrayList sign = new ArrayList();
 		public static char[] signall = new char[5] { '+', '-', '*', '/', '%' };
